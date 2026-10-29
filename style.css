@@ -1,0 +1,392 @@
+:root {
+    --qz-bg: #1a1216;
+    --qz-card-bg: #291d24;
+    --qz-card-hover: #362830;
+    --qz-text: #ffffff;
+    --qz-subtext: #d4beca;
+    --qz-accent: #e08b9d;
+    --qz-accent-hover: #cd7789;
+    --qz-green: #4a9760;
+    --qz-green-bg: rgba(107, 201, 133, 0.18);
+    --qz-red: #bf6060;
+    --qz-red-bg: rgba(240, 123, 123, 0.18);
+    --qz-input-bg: #130d10;
+    --qz-border: rgba(224, 139, 157, 0.3);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+body {
+    background-color: var(--qz-bg);
+    color: var(--qz-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quizlet-header {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-blush{
+    background: var(--qz-accent);
+    color: #fff;
+    font-weight: 800;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(224, 139, 157, 0.4);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+}
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logo-text span {
+    color: var(--qz-subtext);
+    font-weight: 400;
+}
+
+.header-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.progress-bar-container {
+    width: 160px;
+    height: 8px;
+    background: #1a1d42;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    width: 10%;
+    height: 100%;
+    background: var(--qz-accent);
+    transition: width 0.3s ease;
+}
+.progress-text {
+    color: var(--qz-subtext);
+    font-size: 14px;
+    font-weight: 600;
+}
+.main-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 10px 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-scene {
+    width: 100%;
+    height: 260px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+.card-flipper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+.card-flipper.is-flipped {
+    transform: rotateY(180deg);
+}
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: var(--qz-card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border: 2px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+}
+.card-face:hover {
+    background: var(--qz-card-hover);
+}
+.card-back {
+    transform: rotateY(180deg);
+    background: #252d47;
+}
+.card-label {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--qz-subtext);
+}
+.word-display {
+    font-size: 34px;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    word-break: break-word;
+}
+.flip-hint {
+    font-size: 13px;
+    color: var(--qz-subtext);
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+.nav-arrow-btn {
+    background: var(--qz-card-bg);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.1s;
+}
+.nav-arrow-btn:hover {
+    background: var(--qz-accent);
+}
+.nav-arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: var(--qz-card-bg);
+}
+.nav-step-indicator {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--qz-subtext);
+}
+.quizlet-input-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#translationInput {
+    flex: 1;
+    background: var(--qz-input-bg);
+    border: 2px solid #2e3856;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+#translationInput:focus {
+    border-color: var(--qz-accent);
+}
+#translationInput.input-error {
+    border-color: var(--qz-red);
+}
+#translationInput.input-success {
+    border-color: var(--qz-green);
+}
+.btn-check {
+    background: var(--qz-accent);
+    color: #fff;
+    border: none;
+    padding: 0 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-check:hover {
+    background: var(--qz-accent-hover);
+}
+.feedback-msg {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 20px;
+    text-align: center;
+}
+.feedback-msg.correct { color: var(--qz-green); }
+.feedback-msg.incorrect { color: var(--qz-red); }
+.quick-action-btns {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.btn-wrong {
+    background: var(--qz-red-bg);
+    color: var(--qz-red);
+    border: 1px solid rgba(255, 120, 115, 0.3);
+}
+
+.btn-wrong:hover {
+    background: rgba(255, 120, 115, 0.25);
+}
+
+.btn-correct {
+    background: var(--qz-green-bg);
+    color: var(--qz-green);
+    border: 1px solid rgba(24, 174, 121, 0.3);
+}
+
+.btn-correct:hover {
+    background: rgba(24, 174, 121, 0.25);
+}
+.stats-footer {
+    display: flex;
+    gap: 16px;
+}
+
+.stat-pill {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    gap: 6px;
+}
+
+.stat-correct-pill {
+    background: var(--qz-green-bg);
+    color: var(--qz-green);
+}
+
+.stat-incorrect-pill {
+    background: var(--qz-red-bg);
+    color: var(--qz-red);
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 9, 45, 0.85);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-card {
+    background: var(--qz-card-bg);
+    padding: 36px 30px;
+    border-radius: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    border: 1px solid var(--qz-border);
+}
+
+.modal-header-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.modal-card h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.modal-subtitle {
+    color: var(--qz-subtext);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.modal-score-ring {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 6px solid var(--qz-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+}
+.modal-stats-detail {
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.modal-badge {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--qz-green);
+    margin-bottom: 24px;
+}
+
+.btn-restart {
+    width: 100%;
+    background: var(--qz-accent);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-restart:hover {
+    background: var(--qz-accent-hover);
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizlet Style Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="quizlet-header">
+        <div class="logo">
+            <span class="logo-blush">🌸</span>
+            <span class="logo-text">BlushLang <span>Flashcards</span></span>
+        </div>
+        <div class="header-progress">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <span class="progress-text" id="stepCounter">1 / 10</span>
+        </div>
+    </header>
+    <main class="main-container">
+        <div class="card-scene">
+            <div class="card-flipper" id="cardFlipper">
+                <div class="card-face card-front">
+                    <span class="card-label">АНГЛІЙСЬКА</span>
+                    <h2 class="word-display" id="foreignWord">always</h2>
+                    <span class="flip-hint">Натисніть на картку, щоб перевернути 🔄</span>
+                </div>
+                <div class="card-face card-back">
+                    <span class="card-label">ПЕРЕКЛАД</span>
+                    <h2 class="word-display" id="backTranslation">завжди</h2>
+                    <span class="flip-hint">Натисніть ще раз, щоб повернути 🔄</span>
+                </div>
+            </div>
+        </div>
+        <div class="nav-controls">
+            <button class="nav-arrow-btn" id="prevBtn" title="Попереднє слово">&larr;</button>
+            <span class="nav-step-indicator" id="navStep">1 / 10</span>
+            <button class="nav-arrow-btn" id="nextBtn" title="Наступне слово">&rarr;</button>
+        </div>
+        <div class="quizlet-input-section">
+            <div class="input-wrapper">
+                <input type="text" id="translationInput" placeholder="Введіть переклад..." autocomplete="off">
+                <button id="checkBtn" class="btn-check">Перевірити</button>
+            </div>
+            <div class="feedback-msg" id="feedbackMsg"></div>
+        </div>
+        <div class="quick-action-btns">
+            <button class="action-btn btn-wrong" id="markIncorrectBtn">
+                <span class="btn-icon">✕</span>
+                <span>Вчу</span>
+            </button>
+            <button class="action-btn btn-correct" id="markCorrectBtn">
+                <span class="btn-icon">✓</span>
+                <span>Знаю</span>
+            </button>
+        </div>
+        <div class="stats-footer">
+            <div class="stat-pill stat-correct-pill">
+                <span>Знаю:</span>
+                <strong id="correctCount">0</strong>
+            </div>
+            <div class="stat-pill stat-incorrect-pill">
+                <span>Ще вчу:</span>
+                <strong id="incorrectCount">0</strong>
+            </div>
+        </div>
+    </main>
+    <div id="resultModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header-icon">🎉</div>
+            <h2>Чудова робота!</h2>
+            <p class="modal-subtitle">Ви завершили цей модуль слів!</p>
+            <div class="modal-score-ring">
+                <span id="scorePercent">0%</span>
+            </div>
+            <p id="modalStatsText" class="modal-stats-detail"></p>
+            <div id="modalLevelBadge" class="modal-badge"></div>
+            <button id="restartBtn" class="btn-restart">Пройти ще раз</button>
+        </div>
+      </div>
+</body>
+</html>
