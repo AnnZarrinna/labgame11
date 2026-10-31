@@ -27,6 +27,65 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.main-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.card-scene {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.card-face {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px 16px;
+}
+@media (max-width: 768px) {
+    .quizlet-header {
+        padding: 12px 16px;
+    }
+    .word-display {
+        font-size: 1.8rem;
+    }
+    .input-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        width: 100%;
+    }
+    .input-wrapper input {
+        flex: 1;
+    }
+}
+@media (max-width: 480px) {
+    .logo-text span {
+        display: none;
+    }
+
+    .word-display {
+        font-size: 1.5rem;
+    }
+    .quick-action-btns {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .action-btn {
+        flex: 1;
+        padding: 12px 8px;
+        font-size: 0.95rem;
+    }
+    .modal-card {
+        width: 90%;
+        padding: 20px;
+    }
+}
 .quizlet-header {
     width: 100%;
     max-width: 900px;
@@ -160,6 +219,7 @@ body {
     gap: 20px;
     margin-bottom: 24px;
 }
+
 .nav-arrow-btn {
     background: var(--qz-card-bg);
     color: #fff;
@@ -174,28 +234,35 @@ body {
     justify-content: center;
     transition: background 0.2s, transform 0.1s;
 }
+
 .nav-arrow-btn:hover {
     background: var(--qz-accent);
 }
+
 .nav-arrow-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
     background: var(--qz-card-bg);
 }
+
 .nav-step-indicator {
     font-weight: 700;
     font-size: 16px;
     color: var(--qz-subtext);
 }
+
+/* Input Section */
 .quizlet-input-section {
     width: 100%;
     margin-bottom: 20px;
 }
+
 .input-wrapper {
     display: flex;
     gap: 10px;
     width: 100%;
 }
+
 #translationInput {
     flex: 1;
     background: var(--qz-input-bg);
@@ -207,6 +274,7 @@ body {
     outline: none;
     transition: border-color 0.2s;
 }
+
 #translationInput:focus {
     border-color: var(--qz-accent);
 }
@@ -307,8 +375,6 @@ body {
     background: var(--qz-red-bg);
     color: var(--qz-red);
 }
-
-/* Modal */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -319,7 +385,6 @@ body {
     align-items: center;
     z-index: 1000;
 }
-
 .modal-card {
     background: var(--qz-card-bg);
     padding: 36px 30px;
@@ -330,12 +395,10 @@ body {
     box-shadow: 0 16px 40px rgba(0,0,0,0.5);
     border: 1px solid var(--qz-border);
 }
-
 .modal-header-icon {
     font-size: 48px;
     margin-bottom: 12px;
 }
-
 .modal-card h2 {
     font-size: 24px;
     font-weight: 800;
